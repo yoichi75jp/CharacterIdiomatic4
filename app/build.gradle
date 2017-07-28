@@ -7,8 +7,8 @@ android {
         applicationId "com.aufthesis.characteridiomatic4"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 19
-        versionName "2.0.0" //2017/07/09 2.0.0
+        versionCode 20
+        versionName "2.0.1" //2017/07/29 2.0.1
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,16 +24,16 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:26.0.0-beta2'
+    implementation 'com.android.support:appcompat-v7:26.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
 
-    implementation 'com.google.android.gms:play-services-analytics:11.0.2'
-    implementation 'com.google.firebase:firebase-core:11.0.2'  // analyticsを実装
-    implementation 'com.google.firebase:firebase-ads:11.0.2'
-    implementation 'com.google.firebase:firebase-appindexing:11.0.2'
-    implementation 'com.google.firebase:firebase-crash:11.0.2' // crashを実装
-    implementation 'com.google.firebase:firebase-messaging:11.0.2'
+    implementation 'com.google.android.gms:play-services-analytics:11.0.4'
+    implementation 'com.google.firebase:firebase-core:11.0.4'  // analyticsを実装
+    implementation 'com.google.firebase:firebase-ads:11.0.4'
+    implementation 'com.google.firebase:firebase-appindexing:11.0.4'
+    implementation 'com.google.firebase:firebase-crash:11.0.4' // crashを実装
+    implementation 'com.google.firebase:firebase-messaging:11.0.4'
 }
 apply plugin: 'com.google.gms.google-services'
 
