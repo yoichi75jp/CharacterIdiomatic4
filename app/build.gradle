@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.aufthesis.characteridiomatic4"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 21
-        versionName "2.0.2" //2017/09/05 2.0.2
+        versionCode 22
+        versionName "2.0.3" //2017/10/10 2.0.3
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -26,16 +26,16 @@ dependencies {
     })
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
 
-    implementation 'com.google.android.gms:play-services-analytics:11.2.0'
-    implementation 'com.google.firebase:firebase-core:11.2.0'  // analyticsを実装
-    implementation 'com.google.firebase:firebase-ads:11.2.0'
-    implementation 'com.google.firebase:firebase-appindexing:11.2.0'
-    implementation 'com.google.firebase:firebase-crash:11.2.0' // crashを実装
-    implementation 'com.google.firebase:firebase-messaging:11.2.0'
+    implementation 'com.google.android.gms:play-services-analytics:11.4.2'
+    implementation 'com.google.firebase:firebase-core:11.4.2'  // analyticsを実装
+    implementation 'com.google.firebase:firebase-ads:11.4.2'
+    implementation 'com.google.firebase:firebase-appindexing:11.4.2'
+    implementation 'com.google.firebase:firebase-crash:11.4.2' // crashを実装
+    implementation 'com.google.firebase:firebase-messaging:11.4.2'
 }
 apply plugin: 'com.google.gms.google-services'
 
