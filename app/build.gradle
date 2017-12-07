@@ -30,12 +30,12 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
 
-    implementation 'com.google.android.gms:play-services-analytics:11.4.2'
-    implementation 'com.google.firebase:firebase-core:11.4.2'  // analyticsを実装
-    implementation 'com.google.firebase:firebase-ads:11.4.2'
-    implementation 'com.google.firebase:firebase-appindexing:11.4.2'
-    implementation 'com.google.firebase:firebase-crash:11.4.2' // crashを実装
-    implementation 'com.google.firebase:firebase-messaging:11.4.2'
+    implementation 'com.google.android.gms:play-services-analytics:11.6.2'
+    implementation 'com.google.firebase:firebase-core:11.6.2'  // analyticsを実装
+    implementation 'com.google.firebase:firebase-ads:11.6.2'
+    implementation 'com.google.firebase:firebase-appindexing:11.6.2'
+    implementation 'com.google.firebase:firebase-crash:11.6.2' // crashを実装
+    implementation 'com.google.firebase:firebase-messaging:11.6.2'
 }
 apply plugin: 'com.google.gms.google-services'
 
