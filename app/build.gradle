@@ -36,6 +36,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-appindexing:11.6.2'
     implementation 'com.google.firebase:firebase-crash:11.6.2' // crashを実装
     implementation 'com.google.firebase:firebase-messaging:11.6.2'
+
 }
 apply plugin: 'com.google.gms.google-services'
 
