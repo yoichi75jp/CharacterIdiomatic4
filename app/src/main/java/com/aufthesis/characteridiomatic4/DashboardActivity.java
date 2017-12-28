@@ -1,5 +1,6 @@
 package com.aufthesis.characteridiomatic4;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 // Created by yoichi75jp2 on 2017/03/04.
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends Activity {
 
     private Context m_context = null;
 
@@ -43,9 +44,9 @@ public class DashboardActivity extends AppCompatActivity {
 
         m_context = this;
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-            actionBar.setDisplayHomeAsUpEnabled(true);
+//        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+//        if(actionBar != null)
+//            actionBar.setDisplayHomeAsUpEnabled(true);
 
         TextView discText = findViewById(R.id.disc);
         TextView maxText = findViewById(R.id.max);

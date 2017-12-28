@@ -1,5 +1,6 @@
 package com.aufthesis.characteridiomatic4;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import com.google.android.gms.ads.AdView;
  // Created by yoichi75jp2 on 2017/07/04.
  */
 
-public class WebBrowserActivity extends AppCompatActivity {
+public class WebBrowserActivity extends Activity {
 
     private WebView  m_webView;
     private AdView m_adView;
@@ -28,9 +29,9 @@ public class WebBrowserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webbrowser);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-            actionBar.setDisplayHomeAsUpEnabled(true);
+//        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+//        if(actionBar != null)
+//            actionBar.setDisplayHomeAsUpEnabled(true);
 
         //レイアウトで指定したWebViewのIDを指定する。
         m_webView = findViewById(R.id.webView);

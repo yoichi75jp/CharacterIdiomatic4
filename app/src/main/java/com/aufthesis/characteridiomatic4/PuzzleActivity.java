@@ -1,5 +1,6 @@
 package com.aufthesis.characteridiomatic4;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
@@ -59,7 +60,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 // Created by yoichi75jp2 on 2017/03/04.
-public class PuzzleActivity extends AppCompatActivity implements View.OnClickListener {
+public class PuzzleActivity extends Activity implements View.OnClickListener {
 
     private Context m_context = null;
 
@@ -148,9 +149,9 @@ public class PuzzleActivity extends AppCompatActivity implements View.OnClickLis
 
         m_context = this;
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-            actionBar.setDisplayHomeAsUpEnabled(true);
+//        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+//        if(actionBar != null)
+//            actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Obtain the FirebaseAnalytics instance.
         //m_FirebaseAnalytics = FirebaseAnalytics.getInstance(this);

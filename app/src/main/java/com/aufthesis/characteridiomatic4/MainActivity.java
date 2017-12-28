@@ -1,5 +1,6 @@
 package com.aufthesis.characteridiomatic4;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,7 +30,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 // Created by yoichi75jp2 on 2017/03/04.
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     //debug時はこの値をtrueに設定
     static public boolean g_isDebug = false;

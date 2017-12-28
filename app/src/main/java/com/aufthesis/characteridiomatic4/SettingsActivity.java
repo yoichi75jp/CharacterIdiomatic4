@@ -1,5 +1,6 @@
 package com.aufthesis.characteridiomatic4;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,7 +20,7 @@ import com.google.android.gms.ads.AdView;
 // Created by yoichi75jp2 on 2017/06/17.
  */
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends Activity {
 
     private ImageView m_imageSound;
     private TextView m_text_volume;
@@ -32,9 +33,9 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-            actionBar.setDisplayHomeAsUpEnabled(true);
+//        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+//        if(actionBar != null)
+//            actionBar.setDisplayHomeAsUpEnabled(true);
 
         final SeekBar soundSeekBar = findViewById(R.id.sound_seek_bar);
         final Button buttonReturn = findViewById(R.id.button_return);
