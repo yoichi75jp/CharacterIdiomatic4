@@ -232,13 +232,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
-                <Button
+                <!--Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
                     style="android:attr/buttonBarButtonStyle"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible"/-->
+                <Button
+                    android:id="@+id/erase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/ic_backspace_black_24dp"
+                    android:background="#00000000"
+                    style="android:attr/buttonBarButtonStyle"
+                    android:text="@string/delete_1char"/>
                 <Button
                     android:id="@+id/char13"
                     android:layout_width="wrap_content"
@@ -364,14 +374,14 @@
             android:orientation="horizontal"
             android:gravity="center">
             <Button
-                android:id="@+id/back"
+                android:id="@+id/put_back"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/ic_backspace_black_24dp"
+                android:drawableTop="@drawable/ic_fast_rewind_black_24dp"
                 android:background="#00000000"
                 style="android:attr/buttonBarButtonStyle"
-                android:text="@string/delete_1char"/>
+                android:text="@string/back_question"/>
             <Button
                 android:id="@+id/look_answer_btn"
                 android:layout_width="0dp"

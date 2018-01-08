@@ -68,6 +68,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     private List<Integer> m_listID = new ArrayList<>();
     //private List<Pair<String,String>> m_listIdiom = new ArrayList<>();
     private List<Map<String,String>> m_listQuestion = new ArrayList<>();
+    private List<Map<String,String>> m_listPreQuestion = new ArrayList<>();
     private List<Button> m_listClickButton = new ArrayList<>();
     private List<Button> m_listAnswerButton = new ArrayList<>();
 
@@ -206,7 +207,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         m_listID.add(R.id.char15);
         m_listID.add(R.id.char16);
         m_listID.add(R.id.renew);
-        m_listID.add(R.id.back);
+        m_listID.add(R.id.put_back);
+        m_listID.add(R.id.erase);
         m_listID.add(R.id.answer_btn);
         m_listID.add(R.id.look_answer_btn);
         for(int i = 0; i < m_listID.size(); i++)
@@ -218,6 +220,13 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 button.setTextSize(textSize1);
                 //button.setTypeface(typefaceOriginal);
             }
+            button.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    //TODO: クリップボードにコピーしてToast表示
+                    return false;
+                }
+            });
             m_mapButton.put(m_listID.get(i),button);
         }
 
@@ -350,8 +359,15 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 intent = new Intent(this, DummyActivity.class);
                 startActivityForResult(intent, 1);
                 //this.setCharacterSet();
+                //add 2018/01/08
+                m_listPreQuestion.clear();
+                m_listPreQuestion.addAll(m_listQuestion);
                 break;
-            case R.id.back:
+            case R.id.put_back:
+                //TODO: MessageBoxで前の問題に戻るかどうかを確認して処理を決める
+                //m_listPreQuestionを表示
+                break;
+            case R.id.erase:
                 if(m_charAns4.getText() != getString(R.string.blank))
                     m_charAns4.setText(getString(R.string.blank));
                 else if(m_charAns3.getText() != getString(R.string.blank))

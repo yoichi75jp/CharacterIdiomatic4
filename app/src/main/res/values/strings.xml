@@ -9,7 +9,7 @@
     <string name="read">How to read</string>
 
     <string name="version">Ver.%1$s</string>
-
+Back
     <string name="blank">"　"</string>
     <string name="instruction1">Trying to complete 4 idioms</string>
     <string name="instruction2">How do you read?</string>
@@ -20,6 +20,7 @@
     <string name="look_answer">Confirm meaning</string>
     <string name="look_answer2">Give up and see the answer</string>
     <string name="to_answer">Answer</string>
+    <string name="back_question">Back</string>
     <string name="next_question">Next</string>
     <string name="search_disc">Search Web</string>
     <string name="search_word">%1$s+mean</string>

@@ -21,6 +21,7 @@
     <string name="look_answer">意味を確認</string>
     <string name="look_answer2">諦めて\n答えを見る</string>
     <string name="to_answer">解答する</string>
+    <string name="back_question">前の問題</string>
     <string name="next_question">次の問題</string>
     <string name="search_disc">Webで検索</string>
     <string name="search_word">%1$s+意味</string>
