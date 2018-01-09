@@ -27,6 +27,7 @@
     <string name="search_word">%1$s+意味</string>
     <string name="search_word2">%1$s+%2$s+意味</string>
     <string name="goal_achievement">おめでとう！\n目標達成！</string>
+    <string name="copied">%1$sをクリップボードにコピーしました</string>
 
     <string name="answered_list">answered_list</string>
     <string name="answered_list2">answered_list2</string>

@@ -26,6 +26,7 @@ Back
     <string name="search_word">%1$s+mean</string>
     <string name="search_word2">%1$s+%2$s+mean</string>
     <string name="goal_achievement">Congrats!\nGoal achievement!</string>
+    <string name="copied">%1$s copied to clipboard</string>
 
     <string name="answered_list">answered_list</string>
     <string name="answered_list2">answered_list2</string>

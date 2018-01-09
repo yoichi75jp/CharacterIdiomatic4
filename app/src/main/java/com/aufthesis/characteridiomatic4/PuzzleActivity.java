@@ -3,6 +3,8 @@ package com.aufthesis.characteridiomatic4;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -223,8 +225,17 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             button.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    //TODO: クリップボードにコピーしてToast表示
-                    return false;
+                    Button charaButton = (Button)v;
+                    String kanji = charaButton.getText().toString();
+                    ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+                    // Creates a new text clip to put on the clipboard
+                    ClipData clip = ClipData.newPlainText("idiom", kanji);
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast toast = Toast.makeText(m_context, getString(R.string.copied, kanji),Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    return true;
                 }
             });
             m_mapButton.put(m_listID.get(i),button);
