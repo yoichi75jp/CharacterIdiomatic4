@@ -294,7 +294,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         DBOpenHelper dbHelper = new DBOpenHelper(this);
         m_db = dbHelper.getDataBase();
 
-        this.setCharacterSet();
+        this.setCharacterSet(true);
 
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, "ca-app-pub-1485554329820885~3571541058");
@@ -377,6 +377,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             case R.id.put_back:
                 //TODO: MessageBoxで前の問題に戻るかどうかを確認して処理を決める
                 //m_listPreQuestionを表示
+                setCharacterSet(false);
                 break;
             case R.id.erase:
                 if(m_charAns4.getText() != getString(R.string.blank))
@@ -550,7 +551,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     }
 
     // 漢字をバラして設定する
-    private void setCharacterSet() {
+    private void setCharacterSet(Boolean isNormalQuestion) {
         //既に本日解答した熟語を取得する
 
         boolean isJP = Locale.getDefault().toString().equals(Locale.JAPAN.toString());
@@ -615,7 +616,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
 
         m_correctCount = 0;
         m_listQuestion.clear();
-        if(m_listIdiom.size() <= 0)
+        if(m_listIdiom.size() <= 0 && isNormalQuestion)
         {
             try
             {
@@ -657,7 +658,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 toast.show();
             }
         }
-        if(m_listIdiom.size() > 0)
+        if(m_listIdiom.size() > 0 && isNormalQuestion)
         {
             Collections.shuffle(m_listIdiom);
             List<String> listCharacter = new ArrayList<>();
@@ -681,6 +682,39 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                     if(listCharacter.indexOf(idiom.substring(j, j+1)) >= 0) isExist = true;
                 }
                 if(isExist) continue;
+
+                Map<String,String> mapQuestion = new HashMap<>();
+                mapQuestion.put("idiom",idiom);
+                mapQuestion.put("read",read);
+                m_listQuestion.add(mapQuestion);
+                for(int j = 0; j < 4; j++)
+                    listCharacter.add(idiom.substring(j, j+1));
+
+                if(listCharacter.size() >= 16) break;
+            }
+
+            Collections.shuffle(listCharacter);
+            for(int i = 0; i < listCharacter.size(); i++)
+            {
+                Button button = m_mapButton.get(m_listID.get(i));
+                button.setText(listCharacter.get(i));
+                button.setBackgroundColor(m_defaultColor);
+            }
+            Button button = m_mapButton.get(R.id.answer_btn);
+            button.setText(getString(R.string.to_answer));
+            button.setBackgroundResource(R.drawable.circle);
+
+            m_listClickButton.clear();
+            m_listAnswerButton.clear();
+        }
+        //前の画面に戻る 2018/01/30
+        else if(m_listPreQuestion.size() > 0 && !isNormalQuestion)
+        {
+            List<String> listCharacter = new ArrayList<>();
+            for(int i = 0; i < m_listPreQuestion.size(); i++)
+            {
+                String idiom = m_listPreQuestion.get(i).get("idiom");
+                String read = m_listPreQuestion.get(i).get("read");
 
                 Map<String,String> mapQuestion = new HashMap<>();
                 mapQuestion.put("idiom",idiom);
@@ -981,7 +1015,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 1:
-                this.setCharacterSet();
+                this.setCharacterSet(true);
                 break;
             case 2:
                 m_volume = m_prefs.getInt(getString(R.string.seek_volume), 100)/100.f;
