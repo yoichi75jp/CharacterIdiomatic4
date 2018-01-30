@@ -616,7 +616,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
 
         m_correctCount = 0;
         m_listQuestion.clear();
-        if(m_listIdiom.size() <= 0 && isNormalQuestion)
+        if(m_listIdiom.size() <= 0)
         {
             try
             {

@@ -232,14 +232,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
-                <!--Button
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
                     style="android:attr/buttonBarButtonStyle"
-                    android:visibility="invisible"/-->
-                <Button
+                    android:visibility="invisible"/>
+                <!--Button
                     android:id="@+id/erase"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -248,7 +248,7 @@
                     android:drawableTop="@drawable/ic_backspace_black_24dp"
                     android:background="#00000000"
                     style="android:attr/buttonBarButtonStyle"
-                    android:text="@string/delete_1char"/>
+                    android:text="@string/delete_1char"/-->
                 <Button
                     android:id="@+id/char13"
                     android:layout_width="wrap_content"
@@ -290,6 +290,15 @@
                     android:visibility="invisible"/>
             </LinearLayout>
 
+            <Button
+                android:id="@+id/erase"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_backspace_black_24dp"
+                android:background="#00000000"
+                style="android:attr/buttonBarButtonStyle"
+                android:text="@string/delete_1char"/>
 
         </LinearLayout>
     </ScrollView>
@@ -317,6 +326,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:visibility="invisible"/>
+
             <TextView
                 android:id="@+id/ans1"
                 android:layout_width="wrap_content"
