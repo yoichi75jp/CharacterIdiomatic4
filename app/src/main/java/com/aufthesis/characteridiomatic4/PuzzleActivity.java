@@ -19,7 +19,7 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -114,7 +114,6 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     private SQLiteDatabase m_db;
 
     private int m_correctCount;
-    private int m_preCount;
 
     private final int m_defaultColor = Color.parseColor("#bcffff"); // LightCyan
     private final int m_onClickColor = Color.parseColor("#FFFFE0"); // LightYellow
@@ -241,6 +240,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             });
             m_mapButton.put(m_listID.get(i),button);
         }
+        Button putBackButton = m_mapButton.get(R.id.put_back);
+        putBackButton.setEnabled(false);
 
         m_checkHint = findViewById(R.id.check_hint);
         m_checkHint.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -324,7 +325,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     {
         Intent intent;
         int id = view.getId();
-        Button button = m_mapButton.get(id);
+        final Button button = m_mapButton.get(id);
         switch(id)
         {
             case R.id.char1:
@@ -364,7 +365,6 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.renew:
-                m_preCount = m_correctCount;
                 m_charAns4.setText(getString(R.string.blank));
                 m_charAns3.setText(getString(R.string.blank));
                 m_charAns2.setText(getString(R.string.blank));
@@ -380,26 +380,26 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.put_back:
                 new AlertDialog.Builder(this)
-                        .setTitle("前の問題に戻る")
-                        .setMessage("前の問題に戻りますか？\n※但し、問題の並びは変わります")
+                        .setTitle(getString(R.string.back_to_question_title))
+                        .setMessage(getString(R.string.back_to_question_message))
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //m_listPreQuestionを表示
-                                //前の画面で正解していたカウント数だけ戻す必要がある
-                                int count = m_prefs.getInt(getString(R.string.count_induce), 0);
-                                count -= m_preCount;
-                                SharedPreferences.Editor editor = m_prefs.edit();
-                                editor.putInt(getString(R.string.count_induce), count);
-                                editor.apply();
+                            //m_listPreQuestionを表示
+                            //TODO:前の画面で正解していたカウント数だけ戻す必要がある
+                            int count = m_prefs.getInt(getString(R.string.count_induce), 0);
 
-                                setCharacterSet(false);
-                                button.setEnabled(false);
+                            SharedPreferences.Editor editor = m_prefs.edit();
+                            editor.putInt(getString(R.string.count_induce), count);
+                            editor.apply();
+                            m_record.setText(getString(R.string.record, count));
+
+                            setCharacterSet(false);
+                            button.setEnabled(false);
                             }
                         })
                         .setNegativeButton("Cancel", null)
                         .show();
-                }
                 break;
             case R.id.erase:
                 if(m_charAns4.getText() != getString(R.string.blank))
@@ -611,12 +611,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         int thisMonth = calendar.get(Calendar.MONTH);
         calendar.setTime(formatSaveDate);
         int saveMonth = calendar.get(Calendar.MONTH);
-        /*
-        if(lastSize > 0 &&
-                (diffDay >= 32 ||
-                        (date == 1 && diffDay >= 28) ||
-                        (date != 1 && diffDay >= date - 1)))
-        {*/
+
         if (lastSize > 0 && thisMonth != saveMonth)
         {
             int maxScore = m_prefs.getInt(getString(R.string.max_score), 0);

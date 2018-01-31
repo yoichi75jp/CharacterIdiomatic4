@@ -21,13 +21,15 @@
     <string name="look_answer">意味を確認</string>
     <string name="look_answer2">諦めて\n答えを見る</string>
     <string name="to_answer">解答する</string>
-    <string name="back_question">前の問題</string>
-    <string name="next_question">次の問題</string>
+    <string name="back_question">戻る</string>
+    <string name="next_question">進む</string>
     <string name="search_disc">Webで検索</string>
     <string name="search_word">%1$s+意味</string>
     <string name="search_word2">%1$s+%2$s+意味</string>
     <string name="goal_achievement">おめでとう！\n目標達成！</string>
-    <string name="copied">%1$sをクリップボードにコピーしました</string>
+    <string name="copied">[%1$s]\nをクリップボードにコピーしました</string>
+    <string name="back_to_question_title">前の問題に戻る</string>
+    <string name="back_to_question_message">前の問題に戻りますか？\n※但し、問題の並びは変わります</string>
 
     <string name="answered_list">answered_list</string>
     <string name="answered_list2">answered_list2</string>
@@ -76,6 +78,8 @@
     <string name="induce_cancel">後で</string>
 
     <string name="sound_effect">効果音</string>
+    <string name="other_apps_link1">判らない四字熟語があったら\n「速攻解決！四字熟語７０００」\nで見つけてみよう！</string>
+    <string name="click">↑Click</string>
 
     <string name="adUnitId">ca-app-pub-1485554329820885/6525007459</string>
     <string name="adUnitInterId">ca-app-pub-1485554329820885/6519722654</string>

@@ -26,7 +26,9 @@ Back
     <string name="search_word">%1$s+mean</string>
     <string name="search_word2">%1$s+%2$s+mean</string>
     <string name="goal_achievement">Congrats!\nGoal achievement!</string>
-    <string name="copied">%1$s copied to clipboard</string>
+    <string name="copied">[%1$s] \ncopied to clipboard</string>
+    <string name="back_to_question_title">previous question</string>
+    <string name="back_to_question_message">Would you like to go back to the previous question?\n# However, it will be shuffled</string>
 
     <string name="answered_list">answered_list</string>
     <string name="answered_list2">answered_list2</string>
@@ -75,6 +77,8 @@ Back
     <string name="induce_cancel">Later</string>
 
     <string name="sound_effect">Sound Effect</string>
+    <string name="other_apps_link1">If there is an unknown idiom\n「Quick solve! Yojijukugo 7000」\nLet's find it!</string>
+    <string name="click">↑Click</string>
 
     <string name="adUnitId">ca-app-pub-1485554329820885/3934827859</string>
     <string name="adUnitInterId">ca-app-pub-1485554329820885/6519722654</string>

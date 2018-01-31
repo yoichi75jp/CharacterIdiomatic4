@@ -1,10 +1,13 @@
 package com.aufthesis.characteridiomatic4;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,6 +81,23 @@ public class SettingsActivity extends Activity {
                 finish();
                 // アニメーションの設定
                 overridePendingTransition(R.animator.slide_in_left, R.animator.slide_out_right);
+            }
+        });
+
+        Button linkBtn1 = findViewById(R.id.link_app1);
+        linkBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("searchidiom4://main?id=com.aufthesis.searchidiom4");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                try {
+                    startActivity(intent);
+                }
+                catch (ActivityNotFoundException activityNotFound)
+                {
+                    intent.setData(Uri.parse("market://details?id=com.aufthesis.searchidiom4"));
+                    startActivity(intent);
+                }
             }
         });
 
