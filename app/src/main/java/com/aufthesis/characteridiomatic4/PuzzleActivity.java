@@ -113,7 +113,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     //private DBOpenHelper m_DbHelper;
     private SQLiteDatabase m_db;
 
-    private Integer m_correctCount;
+    private int m_correctCount;
+    private int m_preCount;
 
     private final int m_defaultColor = Color.parseColor("#bcffff"); // LightCyan
     private final int m_onClickColor = Color.parseColor("#FFFFE0"); // LightYellow
@@ -363,6 +364,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.renew:
+                m_preCount = m_correctCount;
                 m_charAns4.setText(getString(R.string.blank));
                 m_charAns3.setText(getString(R.string.blank));
                 m_charAns2.setText(getString(R.string.blank));
@@ -373,11 +375,31 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 //add 2018/01/08
                 m_listPreQuestion.clear();
                 m_listPreQuestion.addAll(m_listQuestion);
+                Button putBackButton = m_mapButton.get(R.id.put_back);
+                putBackButton.setEnabled(true);
                 break;
             case R.id.put_back:
-                //TODO: MessageBoxで前の問題に戻るかどうかを確認して処理を決める
-                //m_listPreQuestionを表示
-                setCharacterSet(false);
+                new AlertDialog.Builder(this)
+                        .setTitle("前の問題に戻る")
+                        .setMessage("前の問題に戻りますか？\n※但し、問題の並びは変わります")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //m_listPreQuestionを表示
+                                //前の画面で正解していたカウント数だけ戻す必要がある
+                                int count = m_prefs.getInt(getString(R.string.count_induce), 0);
+                                count -= m_preCount;
+                                SharedPreferences.Editor editor = m_prefs.edit();
+                                editor.putInt(getString(R.string.count_induce), count);
+                                editor.apply();
+
+                                setCharacterSet(false);
+                                button.setEnabled(false);
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+                }
                 break;
             case R.id.erase:
                 if(m_charAns4.getText() != getString(R.string.blank))
