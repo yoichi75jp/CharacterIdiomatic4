@@ -114,6 +114,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     private SQLiteDatabase m_db;
 
     private int m_correctCount;
+    private int m_preCorrectCount;
 
     private final int m_defaultColor = Color.parseColor("#bcffff"); // LightCyan
     private final int m_onClickColor = Color.parseColor("#FFFFE0"); // LightYellow
@@ -373,6 +374,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 startActivityForResult(intent, 1);
                 //this.setCharacterSet();
                 //add 2018/01/08
+                m_preCorrectCount = m_correctCount;
                 m_listPreQuestion.clear();
                 m_listPreQuestion.addAll(m_listQuestion);
                 Button putBackButton = m_mapButton.get(R.id.put_back);
@@ -387,12 +389,26 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                             public void onClick(DialogInterface dialog, int which) {
                             //m_listPreQuestionを表示
                             //TODO:前の画面で正解していたカウント数だけ戻す必要がある
-                            int count = m_prefs.getInt(getString(R.string.count_induce), 0);
-
-                            SharedPreferences.Editor editor = m_prefs.edit();
-                            editor.putInt(getString(R.string.count_induce), count);
-                            editor.apply();
-                            m_record.setText(getString(R.string.record, count));
+                            int preCount = 0;
+                            if(m_preCorrectCount > 0)
+                            {
+                                for(int i = 0; i < m_listPreQuestion.size(); i++)
+                                {
+                                    String idiom = m_listPreQuestion.get(i).get("idiom");
+                                    for(int j = m_answeredList.size() - 1; j >= 0; j--)
+                                    {
+                                        if(m_answeredList.get(j).equals(idiom))
+                                        {
+                                            m_answeredList.remove(j);
+                                            preCount++;
+                                            break;
+                                        }
+                                    }
+                                    if(preCount == m_preCorrectCount) break;
+                                }
+                            }
+                            saveList(getString(R.string.answered_list), m_answeredList);
+                            m_record.setText(getString(R.string.record, m_answeredList.size()));
 
                             setCharacterSet(false);
                             button.setEnabled(false);
