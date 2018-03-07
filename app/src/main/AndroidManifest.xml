@@ -53,6 +53,9 @@
         <activity android:name=".WebBrowserActivity"
             android:screenOrientation="portrait"
             android:label="@string/look_answer"/>
+        <activity android:name=".AchievementActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- Add the following meta-data for devices running Google Play service. -->
         <meta-data

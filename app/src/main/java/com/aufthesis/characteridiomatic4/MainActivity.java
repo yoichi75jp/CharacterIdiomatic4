@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -33,7 +34,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     //debug時はこの値をtrueに設定
-    static public boolean g_isDebug = false;
+    static public boolean g_isDebug = true;
 
     static public boolean g_doneReview = false;
     static public boolean g_isInduceReviewTarget = false;
@@ -98,6 +99,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         button = findViewById(R.id.read);
         button.setOnClickListener(this);
         button.setTextSize(textSize1);
+        button = findViewById(R.id.performance);
+        button.setOnClickListener(this);
+        button.setTextSize(textSize2);
+
+        ImageView imageLogo = findViewById(R.id.logo_image);
+        imageLogo.setOnClickListener(this);
 
         TextView version = findViewById(R.id.version);
         try
@@ -138,6 +145,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         int requestCode;
         int id = view.getId();
         switch(id) {
+            case R.id.performance:
+                intent = new Intent(this, AchievementActivity.class);
+                requestCode = 0;
+                startActivityForResult(intent, requestCode);
+                break;
+
             case R.id.puzzle:
                 intent = new Intent(this, PuzzleActivity.class);
                 requestCode = 1;
@@ -148,6 +161,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 intent = new Intent(this, HowToReadActivity.class);
                 requestCode = 2;
                 startActivityForResult(intent, requestCode);
+                break;
+
+            case R.id.logo_image:
+                //TODO:音鳴らし
                 break;
         }
         // アニメーションの設定
@@ -279,6 +296,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
+            case 0:
             case 1:
             case 2:
                 if(g_isInduceReviewTarget)
