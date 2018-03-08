@@ -24,7 +24,10 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -109,7 +112,7 @@ public class AchievementActivity extends Activity implements View.OnClickListene
         setData();
 
         //バナー広告
-        m_adView = findViewById(R.id.adView);
+        m_adView = findViewById(R.id.adView3);
         AdRequest adRequest = new AdRequest.Builder().build();
         if(!MainActivity.g_isDebug)
             m_adView.loadAd(adRequest);
@@ -136,6 +139,8 @@ public class AchievementActivity extends Activity implements View.OnClickListene
         m_mapButtonID.clear();
         m_matrixLayout.removeAllViews();
         m_buttonCount = 0;
+
+        Calendar firstFieldDate = get1stFieldDate();
 
         for(int row = 1; row <= maxRow; row++)
         {
@@ -177,8 +182,27 @@ public class AchievementActivity extends Activity implements View.OnClickListene
                     Button button = new Button(this);
                     button.setLayoutParams(colParam);
                     //button.setTextColor(Color.WHITE);
-                    button.setText(m_buttonCount.toString());
-                    button.setTextSize(m_textSize1);
+                    String date = "";
+                    switch (m_mode)
+                    {
+                        case 0:
+                            date = getString(R.string.cal_date, firstFieldDate.get(Calendar.DATE));
+                            firstFieldDate.add(Calendar.DATE,1);
+                            break;
+                        case 1:
+                            date = getString(R.string.cal_month, firstFieldDate.get(Calendar.MONTH));
+                            firstFieldDate.add(Calendar.MONTH,1);
+                            break;
+                        case 2:
+                            date = getString(R.string.cal_year, firstFieldDate.get(Calendar.YEAR));
+                            firstFieldDate.add(Calendar.YEAR,1);
+                            break;
+                    }
+                    button.setText(date);
+                    if(m_mode == 0)
+                        button.setTextSize(m_textSize1);
+                    else
+                        button.setTextSize(m_textSize3);
                     button.setId(m_buttonCount);
                     rowLayout.addView(button);
                     button.setOnClickListener(this);
@@ -188,6 +212,47 @@ public class AchievementActivity extends Activity implements View.OnClickListene
             }
             m_matrixLayout.addView(rowLayout);
         }
+    }
+
+    //カレンダーの左上に対応する日付を取得する
+    private Calendar get1stFieldDate()
+    {
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        switch (m_mode)
+        {
+            case 0:
+                boolean is1stDayOfMonth = false;
+                do {
+                    if(calendar.get(Calendar.DATE) == 1)
+                        is1stDayOfMonth = true;
+
+                    if(is1stDayOfMonth)
+                    {
+                        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+                            break;
+                    }
+                    calendar.add(Calendar.DATE, -1);
+                }while(true);
+                break;
+            case 1:
+                do {
+                    if(calendar.get(Calendar.DAY_OF_MONTH) == 1)
+                        break;
+                    calendar.add(Calendar.DAY_OF_MONTH, -1);
+                }while(true);
+                break;
+            case 2:
+                do {
+                    if(calendar.get(Calendar.DAY_OF_YEAR) % 10 == 0)
+                        break;
+                    calendar.add(Calendar.DAY_OF_YEAR, -1);
+                }while(true);
+                break;
+        }
+        return calendar;
     }
 
     public void onClick(View view)

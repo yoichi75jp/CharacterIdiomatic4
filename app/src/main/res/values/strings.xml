@@ -85,7 +85,9 @@
     <!--カレンダー日付-->
     <string name="cal_accumulation_count">%1$d/Month</string>
     <string name="cal_date_count">%1$d/Day</string>
-    <string name="cal_date">07</string>
+    <string name="cal_date">%1$d</string>
+    <string name="cal_month">%1$d</string>
+    <string name="cal_year">%1$d</string>
     <string name="cal_level">Lv.%1$d</string>
 
     <string name="week_sun">Sun</string>

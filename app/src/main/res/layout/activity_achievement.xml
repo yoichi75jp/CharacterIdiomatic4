@@ -81,7 +81,7 @@
 
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView2"
+        android:id="@+id/adView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ads:adUnitId="@string/adUnitId"
