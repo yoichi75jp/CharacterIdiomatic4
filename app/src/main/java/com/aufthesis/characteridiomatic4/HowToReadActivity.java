@@ -169,8 +169,8 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
         //int swsize = point.x;
 
         int textSize1 = 25;
-        int textSize2 = 13;
-        int textSize3 = 30;
+        int textSize2 = 12;
+        int textSize3 = 35;
         if(this.getResources().getConfiguration().smallestScreenWidthDp >= 600)
         {
             //Tabletの場合

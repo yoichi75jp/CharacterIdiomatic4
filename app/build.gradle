@@ -7,8 +7,8 @@ android {
         applicationId "com.aufthesis.characteridiomatic4"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 23
-        versionName "2.1.1" //2018/01/31 2.1.0
+        versionCode 24
+        versionName "2.1.1" // 2018/03/15 2.1.1
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

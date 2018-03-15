@@ -56,7 +56,7 @@ public class AchievementActivity extends Activity implements View.OnClickListene
     private Map<Integer, Button> m_mapButtonID = new ConcurrentHashMap<>();
 
     final boolean m_isJP = Locale.getDefault().toString().equals(Locale.JAPAN.toString());
-    final Date m_today = new Date(System.currentTimeMillis());
+    private Calendar m_toDatCalendar;
 
     private int m_textSize1 = 15;
     private int m_textSize2 = 20;
@@ -109,6 +109,12 @@ public class AchievementActivity extends Activity implements View.OnClickListene
             m_textSize3 = 80;
         }
         m_displayText.setTextSize(m_textSize2);
+
+        //本日の日付
+        Date date = new Date();
+        m_toDatCalendar = Calendar.getInstance();
+        m_toDatCalendar.setTime(date);
+
         setData();
 
         //バナー広告
@@ -187,10 +193,14 @@ public class AchievementActivity extends Activity implements View.OnClickListene
                     {
                         case 0:
                             date = getString(R.string.cal_date, firstFieldDate.get(Calendar.DATE));
+                            if(firstFieldDate.get(Calendar.MONTH) != m_toDatCalendar.get(Calendar.MONTH))
+                                button.setTextColor(Color.parseColor("#CCCCCC"));
+                            else
+                                button.setTextColor(Color.BLACK);
                             firstFieldDate.add(Calendar.DATE,1);
                             break;
                         case 1:
-                            date = getString(R.string.cal_month, firstFieldDate.get(Calendar.MONTH));
+                            date = getString(R.string.cal_month, firstFieldDate.get(Calendar.MONTH) + 1);
                             firstFieldDate.add(Calendar.MONTH,1);
                             break;
                         case 2:
@@ -239,16 +249,18 @@ public class AchievementActivity extends Activity implements View.OnClickListene
                 break;
             case 1:
                 do {
-                    if(calendar.get(Calendar.DAY_OF_MONTH) == 1)
+                    int month = calendar.get(Calendar.MONTH);
+                    if(month == 0)
                         break;
-                    calendar.add(Calendar.DAY_OF_MONTH, -1);
+                    calendar.add(Calendar.MONTH, -1);
                 }while(true);
                 break;
             case 2:
                 do {
-                    if(calendar.get(Calendar.DAY_OF_YEAR) % 10 == 0)
+                    int year = calendar.get(Calendar.YEAR);
+                    if(year % 10 == 0)
                         break;
-                    calendar.add(Calendar.DAY_OF_YEAR, -1);
+                    calendar.add(Calendar.YEAR, -1);
                 }while(true);
                 break;
         }

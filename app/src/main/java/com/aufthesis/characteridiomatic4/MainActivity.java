@@ -34,7 +34,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     //debug時はこの値をtrueに設定
-    static public boolean g_isDebug = true;
+    static public boolean g_isDebug = false;
 
     static public boolean g_doneReview = false;
     static public boolean g_isInduceReviewTarget = false;
@@ -93,15 +93,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switchMode.setTextSize(textSize2);
         m_txtMode.setTextSize(textSize2);
 
+        TextView txtModeTitle = findViewById(R.id.txt_mode);
+        txtModeTitle.setTextSize(textSize2);
+
         Button button = findViewById(R.id.puzzle);
         button.setOnClickListener(this);
         button.setTextSize(textSize1);
         button = findViewById(R.id.read);
         button.setOnClickListener(this);
         button.setTextSize(textSize1);
-        button = findViewById(R.id.performance);
-        button.setOnClickListener(this);
-        button.setTextSize(textSize2);
+//        button = findViewById(R.id.performance);
+//        button.setOnClickListener(this);
+//        button.setTextSize(textSize2);
 
         ImageView imageLogo = findViewById(R.id.logo_image);
         imageLogo.setOnClickListener(this);
@@ -145,11 +148,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
         int requestCode;
         int id = view.getId();
         switch(id) {
-            case R.id.performance:
-                intent = new Intent(this, AchievementActivity.class);
-                requestCode = 0;
-                startActivityForResult(intent, requestCode);
-                break;
+//            case R.id.performance:
+//                intent = new Intent(this, AchievementActivity.class);
+//                requestCode = 0;
+//                startActivityForResult(intent, requestCode);
+//                break;
 
             case R.id.puzzle:
                 intent = new Intent(this, PuzzleActivity.class);

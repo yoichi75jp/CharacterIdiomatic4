@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -87,6 +88,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     final private int m_tolerance = 50;
 
     private AdView m_adView;
+//    private AdView m_adView2;
     private static InterstitialAd m_InterstitialAd;
 
     private class Idiom
@@ -116,7 +118,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     private int m_correctCount;
     private int m_preCorrectCount;
 
-    private final int m_defaultColor = Color.parseColor("#bcffff"); // LightCyan
+    //private final int m_defaultColor = Color.parseColor("#bcffff"); // LightCyan
+    private final int m_defaultColor = Color.parseColor("#E0E0E0"); // Gray
     private final int m_onClickColor = Color.parseColor("#FFFFE0"); // LightYellow
     private final int m_hintColor1 = Color.parseColor("#ff4500"); // orange red
     private final int m_hintColor2 = Color.parseColor("#c71585"); // medium violet red
@@ -178,15 +181,20 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         disp.getSize(point);
         //int swsize = point.x;
 
-        int textSize1 = 30;
-        int textSize2 = 13;
-        int textSize3 = 45;
+//        int textSize1 = 30;
+//        int textSize2 = 13;
+//        int textSize3 = 45;
+        int textSize1 = 29;
+        int textSize2 = 12;
+        int textSize3 = 41;
+        int textSize4 = 15;
         if(this.getResources().getConfiguration().smallestScreenWidthDp >= 600)
         {
             //Tabletの場合
-            textSize1 = 80;
-            textSize2 = 20;
-            textSize3 = 100;
+            textSize1 = 63;
+            textSize2 = 18;
+            textSize3 = 85;
+            textSize4 = 20;
         }
 
         //フォントを変える場合
@@ -220,9 +228,13 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             button.setOnClickListener(this);
             if(i < 16)
             {
-                button.setTextSize(textSize1);
-                //button.setTypeface(typefaceOriginal);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//                    button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+//                else
+                    button.setTextSize(textSize1);
             }
+            else
+                button.setTextSize(textSize4);
             button.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -286,10 +298,20 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         m_charAns2 = findViewById(R.id.ans2);
         m_charAns3 = findViewById(R.id.ans3);
         m_charAns4 = findViewById(R.id.ans4);
-        m_charAns1.setTextSize(textSize3);
-        m_charAns2.setTextSize(textSize3);
-        m_charAns3.setTextSize(textSize3);
-        m_charAns4.setTextSize(textSize3);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//        {
+//            m_charAns1.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+//            m_charAns2.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+//            m_charAns3.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+//            m_charAns4.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+//        }
+//        else
+        {
+            m_charAns1.setTextSize(textSize3);
+            m_charAns2.setTextSize(textSize3);
+            m_charAns3.setTextSize(textSize3);
+            m_charAns4.setTextSize(textSize3);
+        }
         //m_charAns1.setTypeface(typefaceOriginal);
         //m_charAns2.setTypeface(typefaceOriginal);
         //m_charAns3.setTypeface(typefaceOriginal);
@@ -307,6 +329,10 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         AdRequest adRequest = new AdRequest.Builder().build();
         if(!MainActivity.g_isDebug)
             m_adView.loadAd(adRequest);
+//        m_adView2 = findViewById(R.id.adView4);
+//        AdRequest adRequest2 = new AdRequest.Builder().build();
+//        if(!MainActivity.g_isDebug)
+//            m_adView2.loadAd(adRequest2);
 
         // AdMobインターステイシャル
         m_InterstitialAd = new InterstitialAd(this);
@@ -320,7 +346,6 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             }
         });
     }
-
     //Button押下時処理
     public void onClick(View view)
     {
@@ -907,6 +932,9 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         if (m_adView != null) {
             m_adView.resume();
         }
+//        if (m_adView2 != null) {
+//            m_adView2.resume();
+//        }
     }
 
     @Override
@@ -914,6 +942,9 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         if (m_adView != null) {
             m_adView.pause();
         }
+//        if (m_adView2 != null) {
+//            m_adView2.pause();
+//        }
         super.onPause();
         m_soundPool.release();
     }
@@ -928,6 +959,9 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         if (m_adView != null) {
             m_adView.destroy();
         }
+//        if (m_adView2 != null) {
+//            m_adView2.destroy();
+//        }
         super.onDestroy();
         setResult(RESULT_OK);
     }

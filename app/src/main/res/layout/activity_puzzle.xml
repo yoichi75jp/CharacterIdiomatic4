@@ -4,7 +4,6 @@
     android:id="@+id/activity_puzzle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -61,11 +60,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:gravity="top">
+        android:layout_gravity="center_vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:orientation="vertical">
 
         <LinearLayout
@@ -86,32 +90,28 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,32 +140,28 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -193,32 +189,28 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:id="@+id/char12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                style="android:attr/buttonBarButtonStyle"
-                android:textSize="30sp"/>
+                style="android:attr/buttonBarButtonStyle"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -255,32 +247,28 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    style="android:attr/buttonBarButtonStyle"
-                    android:textSize="30sp"/>
+                    style="android:attr/buttonBarButtonStyle"/>
                 <Button
                     android:id="@+id/char14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    style="android:attr/buttonBarButtonStyle"
-                    android:textSize="30sp"/>
+                    style="android:attr/buttonBarButtonStyle"/>
                 <Button
                     android:id="@+id/char15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    style="android:attr/buttonBarButtonStyle"
-                    android:textSize="30sp"/>
+                    style="android:attr/buttonBarButtonStyle"/>
                 <Button
                     android:id="@+id/char16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    style="android:attr/buttonBarButtonStyle"
-                    android:textSize="30sp"/>
+                    style="android:attr/buttonBarButtonStyle"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -290,17 +278,37 @@
                     android:visibility="invisible"/>
             </LinearLayout>
 
+            <!--LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingTop="15dp"
+                android:layout_weight="1">
+
+
+                <com.google.android.gms.ads.AdView
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ads:adUnitId="@string/adUnitId"
+                    ads:adSize="BANNER" />
+
+            </LinearLayout-->
+
+        </LinearLayout>
+
             <Button
                 android:id="@+id/erase"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:drawableTop="@drawable/ic_backspace_black_24dp"
                 android:background="#00000000"
-                style="android:attr/buttonBarButtonStyle"
-                android:text="@string/delete_1char"/>
+                android:layout_gravity="start|bottom"
+                style="android:attr/buttonBarButtonStyle"/>
 
-        </LinearLayout>
+        </FrameLayout>
+
     </ScrollView>
     <!--/FrameLayout-->
 
@@ -315,7 +323,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center|bottom">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -332,7 +340,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_border"
-                android:textSize="45sp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="#000000"
@@ -343,7 +350,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_border"
-                android:textSize="45sp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="#000000"
@@ -354,7 +360,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_border"
-                android:textSize="45sp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="#000000"
@@ -365,7 +370,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_border"
-                android:textSize="45sp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="#000000"
