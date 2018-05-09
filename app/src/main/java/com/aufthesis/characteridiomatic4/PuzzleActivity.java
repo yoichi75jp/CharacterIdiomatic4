@@ -33,6 +33,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -147,6 +148,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
 
     //private FirebaseAnalytics m_FirebaseAnalytics;
     private List<Integer> m_listNum = new ArrayList<>(Arrays.asList(1,2,3));
+
+    private Integer m_twitterDisplayScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -574,6 +577,13 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                         .setNegativeButton("Cancel", null)
                         .show();
                 break;
+            case R.id.twitter:
+                String shareMessage = Uri.encode(getString(R.string.share_message, m_twitterDisplayScore.toString()));
+                String url = getString(R.string.twitter_url, shareMessage);
+                Intent twitterIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(twitterIntent);
+                break;
+            default:break;
         }
     }
 
@@ -838,6 +848,10 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             messageText.setTextColor(Color.RED);
         }
         messageText.setGravity(Gravity.CENTER);
+
+        m_twitterDisplayScore = score2;
+        ImageButton shareButton = view.findViewById(R.id.twitter);
+        shareButton.setOnClickListener(this);
 
         dialog.setView(view);
         dialog.setPositiveButton(getString(R.string.next_ok), new DialogInterface.OnClickListener() {

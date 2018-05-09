@@ -83,6 +83,14 @@
     <string name="other_apps_link1">判らない四字熟語があったら\n「速攻解決！四字熟語７０００」\nで見つけてみよう！</string>
     <string name="click">↑Click</string>
 
+
+    <!--記録更新-->
+    <string name="update_record_title">記録更新</string>
+    <string name="update_record_share">みんなに記録を自慢しちゃおう！</string>
+    <string name="twitter">Twitter</string>
+    <string name="share_message">\n\n究極の四字熟語パズルで【%1$s】を記録しました！\n#究極の四字熟語\nGoogle Play: https://goo.gl/Q15Bi6</string>
+    <string name="twitter_url">http://twitter.com/share?text=%1$s</string>
+
     <!--カレンダー日付-->
     <string name="cal_accumulation_count">%1$d/月</string>
     <string name="cal_date_count">%1$d/日</string>

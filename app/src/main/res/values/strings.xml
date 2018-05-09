@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">4-character idiomatic phrase</string>
+    <string name="app_name">Ultimate Yojijukugo puzzle</string>
 
     <string name="level">Mode</string>
     <string name="level_normal">Normal</string>
@@ -81,6 +81,13 @@
     <string name="sound_effect">Sound Effect</string>
     <string name="other_apps_link1">If there is an unknown idiom\n「Quick solve! Yojijukugo 7000」\nLet's find it!</string>
     <string name="click">↑Click</string>
+
+    <!--記録更新-->
+    <string name="update_record_title">Update record</string>
+    <string name="update_record_share">Let\'s be proud of the record to everyone!</string>
+    <string name="twitter">Twitter</string>
+    <string name="share_message">I got the record of &lt;%1$s&gt; in Ultimate Yojijukugo puzzle app!\n#UltimateYojijukugo\nGoogle Play: https://goo.gl/Q15Bi6</string>
+    <string name="twitter_url">http://twitter.com/share?text=%1$s</string>
 
     <!--カレンダー日付-->
     <string name="cal_accumulation_count">%1$d/Month</string>

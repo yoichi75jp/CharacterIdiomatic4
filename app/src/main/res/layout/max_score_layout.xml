@@ -38,4 +38,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:textColor="#008000"
+        android:textSize="15sp"
+        android:text="@string/update_record_share"/>
+
+    <ImageButton
+        android:contentDescription="@string/update_record_share"
+        android:id="@+id/twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/twitter_social_icon_circle_color"
+        android:background="#00000000"
+        android:text="@string/twitter"/>
+
 </LinearLayout>
