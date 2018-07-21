@@ -88,7 +88,7 @@
     <string name="update_record_title">記録更新</string>
     <string name="update_record_share">みんなに記録を自慢しちゃおう！</string>
     <string name="twitter">Twitter</string>
-    <string name="share_message">\n\n究極の四字熟語パズルで【%1$s】を記録しました！\n#究極の四字熟語\nGoogle Play: https://goo.gl/Q15Bi6</string>
+    <string name="share_message">\n\n先月は、究極の四字熟語パズルで %1$s 語を記録しました！\n\n#究極の四字熟語\nAufThesis\n\nGoogle Play: https://goo.gl/Q15Bi6</string>
     <string name="twitter_url">http://twitter.com/share?text=%1$s</string>
 
     <!--カレンダー日付-->
