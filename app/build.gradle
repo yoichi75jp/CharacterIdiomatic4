@@ -7,8 +7,8 @@ android {
         applicationId "com.aufthesis.characteridiomatic4"
         minSdkVersion 17
         targetSdkVersion 27
-        versionCode 28
-        versionName "2.2.2" // 2018/07/21 2.2.2
+        versionCode 29
+        versionName "2.2.2.1" // 2018/08/01 2.2.2.1
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -29,6 +29,7 @@ dependencies {
     //androidTestImplementation 'com.android.support.test:runner:1.0.1'
     //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.google.android.ads.consent:consent-library:1.0.6'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
 
