@@ -100,6 +100,22 @@ public class SettingsActivity extends Activity {
                 }
             }
         });
+        Button linkBtn2 = findViewById(R.id.link_app2);
+        linkBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("aufthesis_idiom://main?id=com.aufthesis.idiom");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                try {
+                    startActivity(intent);
+                }
+                catch (ActivityNotFoundException activityNotFound)
+                {
+                    intent.setData(Uri.parse("market://details?id=com.aufthesis.idiom"));
+                    startActivity(intent);
+                }
+            }
+        });
 
         //バナー広告
         m_adView = findViewById(R.id.adView);
