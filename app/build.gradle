@@ -7,8 +7,8 @@ android {
         applicationId "com.aufthesis.characteridiomatic4"
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 31
-        versionName "2.2.3" // 2018/08/18 2.2.3
+        versionCode 32
+        versionName "2.2.4" // 2018/08/26 2.2.4
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -33,11 +33,11 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
 
-    implementation 'com.google.android.gms:play-services-analytics:16.0.1'
-    implementation 'com.google.firebase:firebase-core:16.0.1'  // analyticsを実装
+    implementation 'com.google.android.gms:play-services-analytics:16.0.3'
+    implementation 'com.google.firebase:firebase-core:16.0.3'  // analyticsを実装
     implementation 'com.google.firebase:firebase-ads:15.0.1'
     implementation 'com.google.firebase:firebase-appindexing:16.0.1'
-    implementation 'com.google.firebase:firebase-crash:16.0.1' // crashを実装
+    implementation 'com.google.firebase:firebase-crash:16.2.0' // crashを実装
     implementation 'com.google.firebase:firebase-messaging:17.3.0'
 }
 apply plugin: 'com.google.gms.google-services'
