@@ -83,6 +83,8 @@
     <string name="other_apps_link1">判らない四字熟語があったら\n「速攻解決！四字熟語７０００」\nで見つけてみよう！</string>
     <string name="other_apps_link2">慣用句に挑戦したかったら\n「怒涛の慣用句」（穴埋めパズル）\をやってみよう！</string>
     <string name="click">↑Click</string>
+    <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="privacy_policy_url">https://goo.gl/xqd6SZ</string>
 
 
     <!--記録更新-->

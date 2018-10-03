@@ -116,6 +116,16 @@ public class SettingsActivity extends Activity {
                 }
             }
         });
+        // add:2018/10/03 privacy policy 対応
+        Button privacy_policy = findViewById(R.id.privacy_policy);
+        privacy_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(getString(R.string.privacy_policy_url));
+                Intent i = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(i);
+            }
+        });
 
         //バナー広告
         m_adView = findViewById(R.id.adView);
