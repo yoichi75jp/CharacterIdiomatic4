@@ -15,6 +15,15 @@
         android:roundIcon="@mipmap/ic_characteridiomatic4"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--2019/02/05 add-->
+        <!--meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1485554329820885~3571541058"/>
+
         <activity
             android:screenOrientation="portrait"
             android:name=".MainActivity">

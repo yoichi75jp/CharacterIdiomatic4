@@ -108,7 +108,10 @@
     <string name="week_fri">Fri</string>
     <string name="week_sat">Sat</string>
 
-    <string name="adUnitId">ca-app-pub-1485554329820885/3934827859</string>
+    <!--本番-->
+    <string name="adUnitId">ca-app-pub-1485554329820885/6525007459</string>
+    <!--テスト-->
+    <!--string name="adUnitId">ca-app-pub-3940256099942544/6300978111</string-->
     <string name="adUnitInterId">ca-app-pub-1485554329820885/6519722654</string>
     <string name="adUnitTestId">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

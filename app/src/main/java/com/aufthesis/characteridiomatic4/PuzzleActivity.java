@@ -300,6 +300,11 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         m_charAns2 = findViewById(R.id.ans2);
         m_charAns3 = findViewById(R.id.ans3);
         m_charAns4 = findViewById(R.id.ans4);
+        List<TextView> listAnsTextView = new ArrayList<>();
+        listAnsTextView.add(m_charAns1);
+        listAnsTextView.add(m_charAns2);
+        listAnsTextView.add(m_charAns3);
+        listAnsTextView.add(m_charAns4);
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 //        {
 //            m_charAns1.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
@@ -309,10 +314,15 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
 //        }
 //        else
         {
-            m_charAns1.setTextSize(textSize3);
-            m_charAns2.setTextSize(textSize3);
-            m_charAns3.setTextSize(textSize3);
-            m_charAns4.setTextSize(textSize3);
+            for( int i = 0; i < 4; i++)
+            {
+                listAnsTextView.get(i).setTextSize(textSize3);
+                listAnsTextView.get(i).setOnClickListener(this);
+            }
+//            m_charAns1.setTextSize(textSize3);
+//            m_charAns2.setTextSize(textSize3);
+//            m_charAns3.setTextSize(textSize3);
+//            m_charAns4.setTextSize(textSize3);
         }
         //m_charAns1.setTypeface(typefaceOriginal);
         //m_charAns2.setTypeface(typefaceOriginal);
@@ -583,6 +593,13 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 Intent twitterIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(twitterIntent);
                 break;
+            case R.id.ans1:
+            case R.id.ans2:
+            case R.id.ans3:
+            case R.id.ans4:
+                //TODO:選択文字を修正
+
+                break;
             default:break;
         }
     }
@@ -840,7 +857,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             messageText.setText(getString(R.string.next_message1));
             messageText.setTextColor(Color.BLUE);
         }
-        else if(score1 <= score2)
+        else// if(score1 <= score2)
         {
             lastWeeksScoreText.setTextSize(30);
             lastWeeksScoreText.setTextColor(Color.RED);
