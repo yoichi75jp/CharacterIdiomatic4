@@ -176,11 +176,12 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         // スマートフォンの液晶のサイズを取得を開始
         // ウィンドウマネージャのインスタンス取得
         WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
+        if(wm == null) return;
         // ディスプレイのインスタンス生成
-        Display disp = wm.getDefaultDisplay();
+        Display display = wm.getDefaultDisplay();
         // スマートフォンの画面のサイズ
         Point point = new Point();
-        disp.getSize(point);
+        display.getSize(point);
         //int swsize = point.x;
 
 //        int textSize1 = 30;
@@ -245,6 +246,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                     ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
                     // Creates a new text clip to put on the clipboard
                     ClipData clip = ClipData.newPlainText("idiom", kanji);
+                    if(clip == null) return false;
+                    if(clipboard == null) return false;
                     clipboard.setPrimaryClip(clip);
 
                     Toast toast = Toast.makeText(m_context, getString(R.string.copied, kanji),Toast.LENGTH_LONG);
@@ -256,6 +259,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             m_mapButton.put(m_listID.get(i),button);
         }
         Button putBackButton = m_mapButton.get(R.id.put_back);
+        if(putBackButton == null) return;
         putBackButton.setEnabled(false);
 
         m_checkHint = findViewById(R.id.check_hint);
@@ -267,10 +271,14 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                     for(int i = 0; i < 16; i++)
                     {
                         Button button = m_mapButton.get(m_listID.get(i));
+                        if(button == null) continue;
                         if(m_listClickButton.indexOf(button) >= 0) continue;
                         if(m_listAnswerButton.indexOf(button) >= 0) continue;
-                        if(m_listQuestion.get(0).get("idiom").contains(button.getText().toString()) ||
-                                m_listQuestion.get(1).get("idiom").contains(button.getText().toString()))
+                        String tmpIdiom1 = m_listQuestion.get(0).get("idiom");
+                        String tmpIdiom2 = m_listQuestion.get(1).get("idiom");
+                        if(tmpIdiom1 == null || tmpIdiom2 == null) continue;
+                        if(tmpIdiom1.contains(button.getText().toString()) ||
+                                tmpIdiom2.contains(button.getText().toString()))
                             button.setBackgroundColor(m_hintColor1);
                         else
                             button.setBackgroundColor(m_hintColor2);
@@ -281,6 +289,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                     for(int i = 0; i < 16; i++)
                     {
                         Button button = m_mapButton.get(m_listID.get(i));
+                        if(button == null) continue;
                         if(m_listClickButton.indexOf(button) >= 0) continue;
                         if(m_listAnswerButton.indexOf(button) >= 0) continue;
                         button.setBackgroundColor(m_defaultColor);
@@ -364,6 +373,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         Intent intent;
         int id = view.getId();
         final Button button = m_mapButton.get(id);
+        if(button == null) return;
         switch(id)
         {
             case R.id.char1:
@@ -415,6 +425,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 m_listPreQuestion.clear();
                 m_listPreQuestion.addAll(m_listQuestion);
                 Button putBackButton = m_mapButton.get(R.id.put_back);
+                if(putBackButton == null) return;
                 putBackButton.setEnabled(true);
                 break;
             case R.id.put_back:
@@ -470,11 +481,16 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
 
                     if(m_checkHint.isChecked())
                     {
-                        if(m_listQuestion.get(0).get("idiom").contains(btnBack.getText().toString()) ||
-                                m_listQuestion.get(1).get("idiom").contains(btnBack.getText().toString()))
-                            btnBack.setBackgroundColor(m_hintColor1);
-                        else
-                            btnBack.setBackgroundColor(m_hintColor2);
+                        String tmpIdiom1 = m_listQuestion.get(0).get("idiom");
+                        String tmpIdiom2 = m_listQuestion.get(2).get("idiom");
+                        if(tmpIdiom1 != null && tmpIdiom2 != null)
+                        {
+                            if(tmpIdiom1.contains(btnBack.getText().toString()) ||
+                                    tmpIdiom2.contains(btnBack.getText().toString()))
+                                btnBack.setBackgroundColor(m_hintColor1);
+                            else
+                                btnBack.setBackgroundColor(m_hintColor2);
+                        }
                         btnBack.setTextColor(Color.YELLOW);
                     }
                     else
@@ -543,7 +559,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                             button.setBackgroundResource(R.drawable.circle2);
                             button.setText(getString(R.string.look_answer));
                             Button look_answer_btn = m_mapButton.get(R.id.look_answer_btn);
-                            look_answer_btn.setEnabled(false);
+                            if(look_answer_btn != null)
+                                look_answer_btn.setEnabled(false);
 
                             if(!MainActivity.g_doneReview)
                             {
@@ -671,7 +688,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         //int diffDay = differenceDays(new Date(), formatSaveDate);
 
         Button look_answer_btn = m_mapButton.get(R.id.look_answer_btn);
-        look_answer_btn.setEnabled(true);
+        if(look_answer_btn != null)
+            look_answer_btn.setEnabled(true);
 
         Calendar calendar = Calendar.getInstance();
         //int date = calender.get(Calendar.DATE);
@@ -781,12 +799,18 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             for(int i = 0; i < listCharacter.size(); i++)
             {
                 Button button = m_mapButton.get(m_listID.get(i));
-                button.setText(listCharacter.get(i));
-                button.setBackgroundColor(m_defaultColor);
+                if(button != null)
+                {
+                    button.setText(listCharacter.get(i));
+                    button.setBackgroundColor(m_defaultColor);
+                }
             }
             Button button = m_mapButton.get(R.id.answer_btn);
-            button.setText(getString(R.string.to_answer));
-            button.setBackgroundResource(R.drawable.circle);
+            if(button != null)
+            {
+                button.setText(getString(R.string.to_answer));
+                button.setBackgroundResource(R.drawable.circle);
+            }
 
             m_listClickButton.clear();
             m_listAnswerButton.clear();
@@ -799,7 +823,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             {
                 String idiom = m_listPreQuestion.get(i).get("idiom");
                 String read = m_listPreQuestion.get(i).get("read");
-
+                if(idiom == null || read == null) continue;
                 Map<String,String> mapQuestion = new HashMap<>();
                 mapQuestion.put("idiom",idiom);
                 mapQuestion.put("read",read);
@@ -813,12 +837,18 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             for(int i = 0; i < listCharacter.size(); i++)
             {
                 Button button = m_mapButton.get(m_listID.get(i));
-                button.setText(listCharacter.get(i));
-                button.setBackgroundColor(m_defaultColor);
+                if(button != null)
+                {
+                    button.setText(listCharacter.get(i));
+                    button.setBackgroundColor(m_defaultColor);
+                }
             }
             Button button = m_mapButton.get(R.id.answer_btn);
-            button.setText(getString(R.string.to_answer));
-            button.setBackgroundResource(R.drawable.circle);
+            if(button != null)
+            {
+                button.setText(getString(R.string.to_answer));
+                button.setBackgroundResource(R.drawable.circle);
+            }
 
             m_listClickButton.clear();
             m_listAnswerButton.clear();

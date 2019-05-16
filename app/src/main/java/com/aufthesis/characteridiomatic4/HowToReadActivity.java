@@ -161,6 +161,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
         // スマートフォンの液晶のサイズを取得を開始
         // ウィンドウマネージャのインスタンス取得
         WindowManager wm = (WindowManager)getSystemService(Context.WINDOW_SERVICE);
+        if(wm == null) return;
         // ディスプレイのインスタンス生成
         Display disp = wm.getDefaultDisplay();
         // スマートフォンの画面のサイズ
@@ -260,6 +261,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
         Intent intent;
         int id = view.getId();
         Button button = m_mapButton.get(id);
+        if(button == null) return;
         String answer;
         switch(id)
         {
@@ -355,7 +357,8 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
                         button.setBackgroundResource(R.drawable.circle2);
                         button.setText(getString(R.string.look_answer));
                         Button look_answer_btn = m_mapButton.get(R.id.look_answer_btn);
-                        look_answer_btn.setEnabled(false);
+                        if(look_answer_btn != null)
+                            look_answer_btn.setEnabled(false);
 
                         if(!MainActivity.g_doneReview)
                         {
@@ -476,7 +479,8 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
         //int diffDay = differenceDays(new Date(), formatSaveDate);
 
         Button look_answer_btn = m_mapButton.get(R.id.look_answer_btn);
-        look_answer_btn.setEnabled(true);
+        if(look_answer_btn != null)
+            look_answer_btn.setEnabled(true);
 
         Calendar calendar = Calendar.getInstance();
         //int date = calender.get(Calendar.DATE);
@@ -611,12 +615,18 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
             for(int i = 0; i < listCharacter.size(); i++)
             {
                 Button button = m_mapButton.get(m_listID.get(i));
-                button.setText(listCharacter.get(i));
-                button.setBackgroundColor(m_defaultColor);
+                if(button != null)
+                {
+                    button.setText(listCharacter.get(i));
+                    button.setBackgroundColor(m_defaultColor);
+                }
             }
             Button button = m_mapButton.get(R.id.answer_btn);
-            button.setText(getString(R.string.to_answer));
-            button.setBackgroundResource(R.drawable.circle);
+            if(button != null)
+            {
+                button.setText(getString(R.string.to_answer));
+                button.setBackgroundResource(R.drawable.circle);
+            }
 
             m_listClickButton.clear();
             m_listAnswerButton.clear();
@@ -680,7 +690,7 @@ private boolean setReading(String read, List<String> listCharacter, boolean isDu
             messageText.setText(getString(R.string.next_message1));
             messageText.setTextColor(Color.BLUE);
         }
-        else if(score1 <= score2)
+        else// if(score1 <= score2)
         {
             lastWeeksScoreText.setTextSize(30);
             lastWeeksScoreText.setTextColor(Color.RED);

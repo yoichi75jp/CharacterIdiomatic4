@@ -18,7 +18,7 @@
                 android:width="100dp"
                 android:height="100dp"/>
             <!-- strokeタグで線の太さ(width)と色(color)を指定 -->
-            <stroke android:width="4dp" android:color="#33B5E5" />
+            <stroke android:width="4dp" android:color="#4169e1" />
         </shape>
     </item>
 </selector>

@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:textSize="13sp"
-                android:textColor="#FF0000"
+                android:textColor="#dc143c"
                 android:text="@string/record"/>
         </LinearLayout>
 

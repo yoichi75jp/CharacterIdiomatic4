@@ -58,8 +58,11 @@ public class DashboardActivity extends Activity {
         this.setTitle(getString(R.string.dashboard_title, 1, 50));
 
         Intent intent = getIntent();
-        ArrayList listIdiom = intent.getExtras().getStringArrayList("idiom");
-        ArrayList listRead = intent.getExtras().getStringArrayList("read");
+        Bundle bundle = intent.getExtras();
+        if (bundle == null)  return;
+
+        ArrayList listIdiom = bundle.getStringArrayList("idiom");
+        ArrayList listRead = bundle.getStringArrayList("read");
         if(listIdiom != null && listRead != null)
         {
             int sizeAnswer = listIdiom.size();
