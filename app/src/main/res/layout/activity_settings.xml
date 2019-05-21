@@ -16,6 +16,7 @@
             android:layout_marginBottom="5dp"/>
         <SeekBar
             android:id="@+id/sound_seek_bar"
+            android:contentDescription="@string/volume_control"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -62,6 +63,7 @@
                     android:drawableTop="@drawable/idiom"
                     android:background="#00000000"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/other_app_name2"
                     style="android:attr/buttonBarButtonStyle" />
                 <TextView
                     android:layout_width="match_parent"
@@ -94,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/searchidiom4"
                     android:background="#00000000"
+                    android:contentDescription="@string/other_app_name1"
                     android:layout_gravity="center"
                     style="android:attr/buttonBarButtonStyle" />
                 <TextView
@@ -118,6 +121,7 @@
             android:layout_gravity="center"
             android:drawableTop="@drawable/ic_first_page_black_24dp"
             android:background="#00000000"
+            android:contentDescription="@string/return_to_previous_screen"
             style="android:attr/buttonBarButtonStyle"/>
 
         <Button

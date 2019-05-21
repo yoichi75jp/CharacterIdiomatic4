@@ -235,29 +235,31 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
 //                    button.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
 //                else
                     button.setTextSize(textSize1);
+                button.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        Button charaButton = (Button)v;
+                        String kanji = charaButton.getText().toString();
+                        ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+                        // Creates a new text clip to put on the clipboard
+                        ClipData clip = ClipData.newPlainText("idiom", kanji);
+                        if(clip == null) return false;
+                        if(clipboard == null) return false;
+                        clipboard.setPrimaryClip(clip);
+
+                        Toast toast = Toast.makeText(m_context, getString(R.string.copied, kanji),Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                        return true;
+                    }
+                });
             }
             else
                 button.setTextSize(textSize4);
-            button.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Button charaButton = (Button)v;
-                    String kanji = charaButton.getText().toString();
-                    ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
-                    // Creates a new text clip to put on the clipboard
-                    ClipData clip = ClipData.newPlainText("idiom", kanji);
-                    if(clip == null) return false;
-                    if(clipboard == null) return false;
-                    clipboard.setPrimaryClip(clip);
-
-                    Toast toast = Toast.makeText(m_context, getString(R.string.copied, kanji),Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                    return true;
-                }
-            });
             m_mapButton.put(m_listID.get(i),button);
         }
+        // 2019/05/17 ListのEmptyチェック
+        if(m_mapButton.isEmpty()) return;
         Button putBackButton = m_mapButton.get(R.id.put_back);
         if(putBackButton == null) return;
         putBackButton.setEnabled(false);
@@ -274,6 +276,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                         if(button == null) continue;
                         if(m_listClickButton.indexOf(button) >= 0) continue;
                         if(m_listAnswerButton.indexOf(button) >= 0) continue;
+                        // 2019/05/17 ListのEmptyチェック
+                        if(m_listQuestion.isEmpty()) continue;
                         String tmpIdiom1 = m_listQuestion.get(0).get("idiom");
                         String tmpIdiom2 = m_listQuestion.get(1).get("idiom");
                         if(tmpIdiom1 == null || tmpIdiom2 == null) continue;
@@ -325,6 +329,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         {
             for( int i = 0; i < 4; i++)
             {
+                // 2019/05/17 ListのEmptyチェック
+                if(listAnsTextView.isEmpty()) break;
                 listAnsTextView.get(i).setTextSize(textSize3);
                 listAnsTextView.get(i).setOnClickListener(this);
             }
@@ -339,6 +345,20 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
 
         DBOpenHelper dbHelper = new DBOpenHelper(this);
         m_db = dbHelper.getDataBase();
+        if(m_db == null)
+        {
+            // DBが開けなかったときの処理 2019/05/21
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle(getString(R.string.no_db_title));
+            dialog.setMessage(getString(R.string.no_db_message));
+            dialog.setPositiveButton(getString(R.string.no_db_ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            dialog.show();
+        }
 
         this.setCharacterSet(true);
 
@@ -372,6 +392,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     {
         Intent intent;
         int id = view.getId();
+        // 2019/05/17 ListのEmptyチェック
+        if(m_mapButton.isEmpty()) return;
         final Button button = m_mapButton.get(id);
         if(button == null) return;
         switch(id)
@@ -397,14 +419,25 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 if(m_listClickButton.size() == 4) break;
 
                 String character = button.getText().toString();
-                if(m_charAns1.getText().equals(getString(R.string.blank)))
+                if(m_charAns1.getText().equals(getString(R.string.blank))) {
                     m_charAns1.setText(character);
-                else if(m_charAns2.getText().equals(getString(R.string.blank)))
+                    m_charAns1.setContentDescription(getString(R.string.character, character));
+                }
+                else if(m_charAns2.getText().equals(getString(R.string.blank))) {
                     m_charAns2.setText(character);
-                else if(m_charAns3.getText().equals(getString(R.string.blank)))
+                    m_charAns2.setContentDescription(getString(R.string.character, character));
+                }
+                else if(m_charAns3.getText().equals(getString(R.string.blank))) {
                     m_charAns3.setText(character);
-                else if(m_charAns4.getText().equals(getString(R.string.blank)))
+                    m_charAns3.setContentDescription(getString(R.string.character, character));
+                }
+                else if(m_charAns4.getText().equals(getString(R.string.blank))) {
                     m_charAns4.setText(character);
+                    m_charAns4.setContentDescription(getString(R.string.character, character));
+                }
+
+                // 2019/05/17 読み上げ機能認識対応
+                button.setContentDescription(getString(R.string.character, character));
 
                 m_listClickButton.add(button);
                 button.setBackgroundColor(m_onClickColor);
@@ -424,6 +457,8 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 m_preCorrectCount = m_correctCount;
                 m_listPreQuestion.clear();
                 m_listPreQuestion.addAll(m_listQuestion);
+                // 2019/05/17 ListのEmptyチェック
+                if(m_mapButton.isEmpty()) return;
                 Button putBackButton = m_mapButton.get(R.id.put_back);
                 if(putBackButton == null) return;
                 putBackButton.setEnabled(true);
@@ -438,11 +473,13 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                             //m_listPreQuestionを表示
                             //TODO:前の画面で正解していたカウント数だけ戻す必要がある
                             int preCount = 0;
-                            if(m_preCorrectCount > 0)
+                            if(m_preCorrectCount > 0 && !m_listPreQuestion.isEmpty())
                             {
                                 for(int i = 0; i < m_listPreQuestion.size(); i++)
                                 {
                                     String idiom = m_listPreQuestion.get(i).get("idiom");
+                                    // 2019/05/17 ListのEmptyチェック
+                                    if(m_answeredList.isEmpty()) break;
                                     for(int j = m_answeredList.size() - 1; j >= 0; j--)
                                     {
                                         if(m_answeredList.get(j).equals(idiom))
@@ -479,7 +516,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 {
                     Button btnBack = m_listClickButton.get(m_listClickButton.size()-1);
 
-                    if(m_checkHint.isChecked())
+                    if(m_checkHint.isChecked() && !m_listQuestion.isEmpty())
                     {
                         String tmpIdiom1 = m_listQuestion.get(0).get("idiom");
                         String tmpIdiom2 = m_listQuestion.get(2).get("idiom");
@@ -554,7 +591,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                         m_charAns3.setText(getString(R.string.blank));
                         m_charAns2.setText(getString(R.string.blank));
                         m_charAns1.setText(getString(R.string.blank));
-                        if (m_correctCount == 4) {
+                        if (m_correctCount == 4 && !m_mapButton.isEmpty()) {
                             m_soundPool.play(m_clearSoundID, m_volume, m_volume, 0, 0, 1.0F);
                             button.setBackgroundResource(R.drawable.circle2);
                             button.setText(getString(R.string.look_answer));
@@ -590,7 +627,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                                 if(count >= 4)
                                 {
                                     Collections.shuffle(m_listNum);
-                                    if(m_listNum.get(0) == 1) {
+                                    if(!m_listNum.isEmpty() && m_listNum.get(0) == 1) {
                                         count = 0;
                                         m_InterstitialAd.loadAd(new AdRequest.Builder().build());
                                     }
@@ -637,6 +674,22 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 Map<String, String> conMap = (Map<String, String>)arg0.getItemAtPosition(arg2);
+                if(conMap.isEmpty()) return;
+                if(m_correctCount == 0)
+                {
+                    // 1つ以上正解していないと意味を調べられない仕様に変更 2019/05/21
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(m_context);
+                    dialog.setTitle(getString(R.string.not_find_meaning_title));
+                    dialog.setMessage(getString(R.string.not_find_meaning_message));
+                    dialog.setPositiveButton(getString(R.string.not_find_meaning_ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    dialog.show();
+                    return;
+                }
                 String idiom = conMap.get("idiom");
                 Intent intent = new Intent(m_context, WebBrowserActivity.class);
                 intent.putExtra(SearchManager.QUERY, getString(R.string.search_word, idiom));
@@ -687,6 +740,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         }
         //int diffDay = differenceDays(new Date(), formatSaveDate);
 
+        if(m_mapButton.isEmpty()) return;
         Button look_answer_btn = m_mapButton.get(R.id.look_answer_btn);
         if(look_answer_btn != null)
             look_answer_btn.setEnabled(true);
@@ -733,7 +787,6 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
                 Cursor cursor = m_db.rawQuery(sql, null);
                 cursor.moveToFirst();
                 if (cursor.getCount() != 0) {
-
                     for (int i = 0; i < cursor.getCount(); i++) {
                         String idiom = (cursor.getString(0));
                         String read = (cursor.getString(1));
@@ -798,13 +851,15 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             Collections.shuffle(listCharacter);
             for(int i = 0; i < listCharacter.size(); i++)
             {
+                if(m_mapButton.isEmpty() || m_listID.isEmpty()) break;
                 Button button = m_mapButton.get(m_listID.get(i));
-                if(button != null)
+                if(button != null && !listCharacter.isEmpty())
                 {
                     button.setText(listCharacter.get(i));
                     button.setBackgroundColor(m_defaultColor);
                 }
             }
+            if(m_mapButton.isEmpty()) return;
             Button button = m_mapButton.get(R.id.answer_btn);
             if(button != null)
             {
@@ -836,13 +891,15 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             Collections.shuffle(listCharacter);
             for(int i = 0; i < listCharacter.size(); i++)
             {
+                if(m_mapButton.isEmpty() || m_listID.isEmpty()) break;
                 Button button = m_mapButton.get(m_listID.get(i));
-                if(button != null)
+                if(button != null && !listCharacter.isEmpty())
                 {
                     button.setText(listCharacter.get(i));
                     button.setBackgroundColor(m_defaultColor);
                 }
             }
+            if(m_mapButton.isEmpty()) return;
             Button button = m_mapButton.get(R.id.answer_btn);
             if(button != null)
             {
@@ -939,6 +996,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     // 設定値 ArrayList<String> を保存（Context は Activity や Application や Service）
     private void saveList(String key, ArrayList<String> list) {
         JSONArray jsonAry = new JSONArray();
+        if(list.isEmpty()) return;
         for(int i = 0; i < list.size(); i++) {
             jsonAry.put(list.get(i));
         }
@@ -1088,7 +1146,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             });
             dialog.show();
         }
-        if(id == R.id.dashboard)
+        if(id == R.id.dashboard && !m_listIdiom.isEmpty())
         {
             //既に本日解答した熟語を取得する
             ArrayList<String> answerList = loadList(getString(R.string.answered_list));

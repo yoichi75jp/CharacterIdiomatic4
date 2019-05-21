@@ -260,6 +260,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
     {
         Intent intent;
         int id = view.getId();
+        if(m_mapButton.isEmpty()) return;
         Button button = m_mapButton.get(id);
         if(button == null) return;
         String answer;
@@ -326,7 +327,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
                     answer = m_answer.getText().toString();
 
                     // 正解したとき
-                    if (m_listReading.indexOf(answer) >= 0) {
+                    if (m_listReading.indexOf(answer) >= 0 && !m_listClickButton.isEmpty() && !m_listCorrectColor.isEmpty() && !m_mapButton.isEmpty()) {
                         for (int i = 0; i < m_listClickButton.size(); i++) {
                             Button btn = m_listClickButton.get(i);
                             m_listAnswerButton.add(btn);
@@ -369,7 +370,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
                             editor.apply();
                         }
                     }
-                    else //間違えたとき
+                    else if(!m_listClickButton.isEmpty()) //間違えたとき
                     {
                         for (int i = 0; i < m_listClickButton.size(); i++) {
                             Button btn = m_listClickButton.get(i);
@@ -394,7 +395,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
                                 //startActivityForResult(intent, 1);
                                 int count = m_prefs.getInt(getString(R.string.look_count), 0);
                                 count++;
-                                if(count >= 4)
+                                if(count >= 4 && !m_listNum.isEmpty())
                                 {
                                     Collections.shuffle(m_listNum);
                                     if(m_listNum.get(0) == 1) {
@@ -429,6 +430,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 Map<String, String> conMap = (Map<String, String>)arg0.getItemAtPosition(arg2);
+                if(conMap.isEmpty() || m_correctCount == 0) return;
                 String idiom = conMap.get("idiom");
                 String read = conMap.get("read");
                 Intent intent = new Intent(m_context, WebBrowserActivity.class);
@@ -478,6 +480,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
         }
         //int diffDay = differenceDays(new Date(), formatSaveDate);
 
+        if(m_mapButton.isEmpty()) return;
         Button look_answer_btn = m_mapButton.get(R.id.look_answer_btn);
         if(look_answer_btn != null)
             look_answer_btn.setEnabled(true);
@@ -592,7 +595,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
                 }
                 if(isExist) continue;
 
-                if(m_listQuestion.size() == 0)
+                if(m_listQuestion.size() == 0 && !m_listIdiom.isEmpty())
                 {
                     for(int j = 0; j < m_listIdiom.size(); j++)
                     {
@@ -611,6 +614,7 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
                 }
                 if(setReading(read, listCharacter, false)) break;
             }
+            if(m_mapButton.isEmpty() || listCharacter.isEmpty()) return;
             Collections.shuffle(listCharacter);
             for(int i = 0; i < listCharacter.size(); i++)
             {
@@ -737,6 +741,7 @@ private boolean setReading(String read, List<String> listCharacter, boolean isDu
 
     // 設定値 ArrayList<String> を保存（Context は Activity や Application や Service）
     private void saveList(String key, ArrayList<String> list) {
+        if(list.isEmpty()) return;
         JSONArray jsonAry = new JSONArray();
         for(int i = 0; i < list.size(); i++) {
             jsonAry.put(list.get(i));
@@ -883,6 +888,7 @@ private boolean setReading(String read, List<String> listCharacter, boolean isDu
             //既に本日解答した熟語を取得する
             ArrayList<String> answerList = loadList(getString(R.string.answered_list2));
             ArrayList<String> readList = new ArrayList<>();
+            if(answerList.isEmpty() || m_listIdiom.isEmpty()) return false;
             for(int i = 0; i < answerList.size(); i++)
             {
                 for(int j = 0; j < m_listIdiom.size(); j++)

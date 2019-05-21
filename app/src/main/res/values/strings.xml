@@ -31,6 +31,7 @@
     <string name="copied">[%1$s] \ncopied to clipboard</string>
     <string name="back_to_question_title">previous question</string>
     <string name="back_to_question_message">Would you like to go back to the previous question?\n# However, it will be shuffled</string>
+    <string name="character">%1$s</string>
 
     <string name="answered_list">answered_list</string>
     <string name="answered_list2">answered_list2</string>
@@ -78,9 +79,21 @@
     <string name="induce_ok">Evaluate</string>
     <string name="induce_cancel">Later</string>
 
+    <string name="not_find_meaning_title">You can not find the meaning</string>
+    <string name="not_find_meaning_message">You can not find meaning on the web unless you answer one or more puzzles.</string>
+    <string name="not_find_meaning_ok">OK</string>
+
+    <string name="no_db_title">Error occurred</string>
+    <string name="no_db_message">An unexpected error has occurred.\nPlease reinstall and try again.</string>
+    <string name="no_db_ok">OK</string>
+
     <string name="sound_effect">Sound Effect</string>
+    <string name="volume_control">Volume control</string>
     <string name="other_apps_link1">If there is an unknown idiom\n「Quick solve! Yojijukugo 7000」\nLet\'s find it!</string>
     <string name="other_apps_link2">If you want to challenge idioms in Japanese,\nlet\'s try \'Idiot\'s Japanese Idiomatic Phrase\'!</string>
+    <string name="other_app_name1">Quick solve! Yojijukugo 7000</string>
+    <string name="other_app_name2">Idiot\'s Japanese Idiomatic Phrase</string>
+    <string name="return_to_previous_screen">Return to previous screen</string>
     <string name="click">↑Click</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="privacy_policy_url">https://goo.gl/xqd6SZ</string>

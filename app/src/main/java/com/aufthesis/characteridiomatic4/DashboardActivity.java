@@ -63,7 +63,7 @@ public class DashboardActivity extends Activity {
 
         ArrayList listIdiom = bundle.getStringArrayList("idiom");
         ArrayList listRead = bundle.getStringArrayList("read");
-        if(listIdiom != null && listRead != null)
+        if(listIdiom != null && listRead != null && !listIdiom.isEmpty() && !listRead.isEmpty())
         {
             int sizeAnswer = listIdiom.size();
             List<Map<String, String>> listMapAnswer = new ArrayList<>();
