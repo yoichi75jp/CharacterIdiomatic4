@@ -230,6 +230,20 @@ public class HowToReadActivity extends Activity implements View.OnClickListener 
 
         DBOpenHelper dbHelper = new DBOpenHelper(this);
         m_db = dbHelper.getDataBase();
+        if(m_db == null)
+        {
+            // DBが開けなかったときの処理 2019/05/21
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setTitle(getString(R.string.no_db_title));
+            dialog.setMessage(getString(R.string.no_db_message));
+            dialog.setPositiveButton(getString(R.string.no_db_ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            dialog.show();
+        }
 
         this.setCharacterSet();
 

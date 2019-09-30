@@ -302,11 +302,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case 0:
             case 1:
             case 2:
-                if(g_isInduceReviewTarget)
-                    induceReview();
+//                if(g_isInduceReviewTarget)
+//                    induceReview();
                 break;
-            case 3:
-                break;
+//            case 3:
+//                break;
             case 4:
                 m_volume = m_prefs.getInt(getString(R.string.seek_volume), 100)/100.f;
                 break;
