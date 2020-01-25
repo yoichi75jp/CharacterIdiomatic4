@@ -957,10 +957,10 @@ private boolean setReading(String read, List<String> listCharacter, boolean isDu
             case 2:
                 m_volume = m_prefs.getInt(getString(R.string.seek_volume), 100)/100.f;
                 break;
-            case 3:
-                break;
-            case 4:
-                break;
+//            case 3:
+//                break;
+//            case 4:
+//                break;
             default:break;
         }
     }

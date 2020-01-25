@@ -85,7 +85,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     private TextView m_charAns3;
     private TextView m_charAns4;
 
-    final private int m_tolerance = 50;
+    //final private int m_tolerance = 50;
 
     private AdView m_adView;
 //    private AdView m_adView2;
@@ -712,7 +712,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
     // 漢字をバラして設定する
     private void setCharacterSet(Boolean isNormalQuestion) {
         //既に本日解答した熟語を取得する
-
+        final int m_tolerance = 50;
         boolean isJP = Locale.getDefault().toString().equals(Locale.JAPAN.toString());
         m_checkHint.setEnabled(true);
         m_checkHint.setChecked(false);
@@ -740,7 +740,7 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
         }
         //int diffDay = differenceDays(new Date(), formatSaveDate);
 
-        if(m_mapButton.isEmpty()) return;
+        if(m_mapButton.isEmpty() || formatSaveDate == null) return;
         Button look_answer_btn = m_mapButton.get(R.id.look_answer_btn);
         if(look_answer_btn != null)
             look_answer_btn.setEnabled(true);
@@ -1205,10 +1205,10 @@ public class PuzzleActivity extends Activity implements View.OnClickListener {
             case 2:
                 m_volume = m_prefs.getInt(getString(R.string.seek_volume), 100)/100.f;
                 break;
-            case 3:
-                break;
-            case 4:
-                break;
+//            case 3:
+//                break;
+//            case 4:
+//                break;
             default:break;
         }
     }
